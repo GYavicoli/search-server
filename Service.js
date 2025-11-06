@@ -1,15 +1,14 @@
 const { getJson } = require('serpapi');
 
 class Service { 
-    constructor() {}
+    constructor() {
+        this.apiKey = process.env.SERPAPI_KEY;
+    }
 
     async search(q, location) {
-        // ToDo - move api key to env variable or someplace safer
-        const apiKey = 'bedee3a120f828213c1bd9148dfd4b0e26c5318a096b4fe25a1df4cc4203cb6b';
-
         try {
             const response = await getJson('google', {
-                api_key: apiKey,
+                api_key: this.apiKey,
                 q: q,
                 location: location
             });
@@ -19,7 +18,7 @@ class Service {
             return 'Error fetching data.';
 
         } finally {
-            console.log('fetchData completed');
+            console.log(`${q} fetch completed.`);
         }
     }
 }
