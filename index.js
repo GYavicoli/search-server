@@ -21,3 +21,7 @@ app.post('/api/search', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on:${port}`);
 });
+
+app.get('/', async(req, res) => {
+    res.json({status: 'Server is up and running.'});
+})
